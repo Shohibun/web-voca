@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../components/layout";
 import Link from "next/link";
 import { Button, Label, TextInput, ToggleSwitch } from "flowbite-react";
@@ -6,15 +6,39 @@ import { IoEyeSharp } from "react-icons/io5";
 
 export default function Register() {
   const [switch1, setSwitch1] = useState(false);
+  const [theme, setTheme] = useState("light");
+
+  useEffect(() => {
+    if (window.matchMedia("prefers-color-scheme: dark").matches) {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  }, []);
+
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
+
+  const handleThemeSwitch = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
 
   return (
     <Layout title="Register">
       <div className="container">
         <div className="flex justify-end my-2 mr-6">
-          <ToggleSwitch checked={switch1} onChange={setSwitch1} />
+          <ToggleSwitch checked={switch1} onChange={setSwitch1} onClick={handleThemeSwitch} />
+          {/* <Button color="blue" onClick={handleThemeSwitch}>
+            Blue
+          </Button> */}
         </div>
 
-        <div className="w-full flex justify-center items-center custom-register">
+        <div className="w-full flex justify-center items-center custom-register dark:bg-orange-500">
           <div>
             <h1 className="text-white text-5xl font-bold">Daftarkan Akun</h1>
 

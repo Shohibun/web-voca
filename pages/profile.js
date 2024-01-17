@@ -32,7 +32,7 @@ export default function Profile() {
         <div className="w-10/12 mx-auto rounded p-5 mt-10 custom-navbar">
           <h1 className="text-white text-3xl font-bold text-center">LOREM</h1>
 
-          <div className="w-6/12 mx-auto mt-2">
+          <div className="w-full md:w-6/12 mx-auto mt-2">
             <p className="text-white text-center text-sm">
               &quot;Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Quisque erat velit, dictum non urna in, consectetur aliquet justo.
@@ -66,8 +66,8 @@ export default function Profile() {
             </div>
           </div>
 
-          <div className="grid grid-cols-5">
-            <div className="col-span-1">
+          <div className="grid md:grid-cols-5">
+            <div className="col-span-1 custom-display">
               <Sidebar aria-label="Default sidebar example">
                 <Sidebar.Items>
                   <Sidebar.ItemGroup>
@@ -87,7 +87,7 @@ export default function Profile() {
               </Sidebar>
             </div>
 
-            <div className="col-span-4">
+            <div className="md:col-span-4 mt-4 md:mt-0">
               <div className="rounded shadow-xl">
                 <div className="grid grid-cols-8 mb-2">
                   <div className="col-span-1 flex justify-end">

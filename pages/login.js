@@ -18,8 +18,8 @@ export default function Login() {
   return (
     <Layout title="Login">
       <div className="container">
-        <div className="grid grid-cols-2">
-          <div className="col-span-1 flex justify-center items-center custom-login-left">
+        <div className="grid md:grid-cols-2">
+          <div className="col-span-1 flex justify-center items-center custom-login-left custom-display">
             <div>
               {/* <img src="img_girl.jpg" alt="Girl in a jacket" width="500" height="600"/> */}
               <Image src={Logo} alt="Logo" className="mx-auto w-80" />
@@ -50,7 +50,7 @@ export default function Login() {
             </div>
           </div>
 
-          <div className="col-span-1">
+          <div className="md:col-span-1">
             <div className="flex justify-end mt-4 mr-6">
               <ToggleSwitch checked={switch1} onChange={setSwitch1} />
             </div>
