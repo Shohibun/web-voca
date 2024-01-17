@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../components/layout";
 import {
   Button,
@@ -8,28 +8,48 @@ import {
   ToggleSwitch,
 } from "flowbite-react";
 import Navbar from "../components/navbar";
-import {
-  FaHospitalUser,
-  FaLongArrowAltRight,
-  FaRegUserCircle,
-} from "react-icons/fa";
+import { FaLongArrowAltRight, FaRegUserCircle } from "react-icons/fa";
 import { CiEdit, CiLogout } from "react-icons/ci";
 import Footer from "../components/footer";
-import { IoEyeSharp } from "react-icons/io5";
 
 export default function Profile() {
   const [switch1, setSwitch1] = useState(false);
+  const [theme, setTheme] = useState("light");
+
+  useEffect(() => {
+    if (window.matchMedia("prefers-color-scheme: dark").matches) {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  }, []);
+
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
+
+  const handleThemeSwitch = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
 
   return (
     <Layout title="Profile">
       <div className="container">
         <div className="flex justify-end my-2 mr-6">
-          <ToggleSwitch checked={switch1} onChange={setSwitch1} />
+          <ToggleSwitch
+            checked={switch1}
+            onChange={setSwitch1}
+            onClick={handleThemeSwitch}
+          />
         </div>
 
         <Navbar />
 
-        <div className="w-10/12 mx-auto rounded p-5 mt-10 custom-navbar">
+        <div className="w-10/12 mx-auto rounded p-5 mt-10 custom-navbar dark:bg-orange-500">
           <h1 className="text-white text-3xl font-bold text-center">LOREM</h1>
 
           <div className="w-full md:w-6/12 mx-auto mt-2">
@@ -55,7 +75,7 @@ export default function Profile() {
               </div>
             </div>
 
-            <div className="grid grid-cols-4 gap-1 w-34 px-4 custom-navbar rounded-full">
+            <div className="grid grid-cols-4 gap-1 w-34 px-4 custom-navbar dark:bg-orange-500 rounded-full">
               <div className="col-span-1 flex items-center">
                 <CiEdit className="text-white w-6 h-6" />
               </div>
@@ -66,25 +86,36 @@ export default function Profile() {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-5">
+          <div className="grid md:grid-cols-5 mt-10">
             <div className="col-span-1 custom-display">
-              <Sidebar aria-label="Default sidebar example">
-                <Sidebar.Items>
-                  <Sidebar.ItemGroup>
-                    <Sidebar.Item href="#" icon={FaRegUserCircle}>
-                      Profile
-                    </Sidebar.Item>
-                    <Sidebar.Item
-                      href="/"
-                      icon={CiLogout}
-                      color="red"
-                      className="text-red-500"
-                    >
-                      Logout
-                    </Sidebar.Item>
-                  </Sidebar.ItemGroup>
-                </Sidebar.Items>
-              </Sidebar>
+              <div className="grid grid-rows-2">
+                <div className="row-span-1">
+                  <div className="grid grid-cols-6 gap-1">
+                    <div className="col-span-1 flex items-center justify-end">
+                      <FaRegUserCircle className="text-gray-500 w-5 h-5" />
+                    </div>
+
+                    <div className="col-span-5">
+                      <p className="text-gray-500">Profile</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid grid-rows-2 mt-96">
+                <hr className="w-11/12 mx-auto" />
+                <div className="row-span-1">
+                  <div className="grid grid-cols-6 gap-1">
+                    <div className="col-span-1 flex items-center justify-end">
+                      <CiLogout className="text-red-500 w-5 h-5" />
+                    </div>
+
+                    <div className="col-span-5">
+                      <p className="text-red-500">Logout</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div className="md:col-span-4 mt-4 md:mt-0">
@@ -104,39 +135,75 @@ export default function Profile() {
                 <form className="flex px-11 flex-col gap-4 mt-6">
                   <div>
                     <div className="mb-2 block">
-                      <Label htmlFor="userName" value="Nama Anda" />
+                      <Label
+                        htmlFor="userName"
+                        value="Nama Anda"
+                        className="dark:text-dark"
+                      />
                     </div>
-                    <TextInput id="userName" type="text" required />
+                    <TextInput
+                      id="userName"
+                      type="text"
+                      color={"dark:info"}
+                      required
+                    />
                   </div>
 
                   <div>
                     <div className="mb-2 block">
-                      <Label htmlFor="nomer" value="Nomer Handphone" />
+                      <Label
+                        htmlFor="nomer"
+                        value="Nomer Handphone"
+                        className="dark:text-dark"
+                      />
                     </div>
-                    <TextInput id="nomer" type="text" required />
+                    <TextInput
+                      id="nomer"
+                      type="text"
+                      color={"dark:info"}
+                      required
+                    />
                   </div>
 
                   <div>
                     <div className="mb-2 block">
-                      <Label htmlFor="password1" value="Old Password" />
+                      <Label
+                        htmlFor="password1"
+                        value="Old Password"
+                        className="dark:text-dark"
+                      />
                     </div>
-                    <TextInput id="password1" type="password" required />
+                    <TextInput
+                      id="password1"
+                      type="password"
+                      color={"dark:info"}
+                      required
+                    />
                   </div>
 
                   <div>
                     <div className="mb-2 block">
-                      <Label htmlFor="password2" value="New Password" />
+                      <Label
+                        htmlFor="password2"
+                        value="New Password"
+                        className="dark:text-dark"
+                      />
                     </div>
-                    <TextInput id="password2" type="password" required />
+                    <TextInput
+                      id="password2"
+                      type="password"
+                      color={"dark:info"}
+                      required
+                    />
                   </div>
 
                   <Button
                     type="submit"
                     color="blue"
-                    className="mt-6 mb-4 text-white w-36"
+                    className="mt-6 mb-4 text-white w-36 dark:bg-orange-500"
                   >
                     Edit Profile
-                    <FaLongArrowAltRight className="ml-1" />
+                    <FaLongArrowAltRight className="ml-1 mt-1" />
                   </Button>
                 </form>
               </div>

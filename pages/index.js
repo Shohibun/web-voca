@@ -32,7 +32,11 @@ export default function Register() {
     <Layout title="Register">
       <div className="container">
         <div className="flex justify-end my-2 mr-6">
-          <ToggleSwitch checked={switch1} onChange={setSwitch1} onClick={handleThemeSwitch} />
+          <ToggleSwitch
+            checked={switch1}
+            onChange={setSwitch1}
+            onClick={handleThemeSwitch}
+          />
           {/* <Button color="blue" onClick={handleThemeSwitch}>
             Blue
           </Button> */}
@@ -55,7 +59,7 @@ export default function Register() {
                     className="text-white"
                   />
                 </div>
-                <TextInput id="userName" type="text" required />
+                <TextInput id="userName" type="text" color={"info"} required />
               </div>
 
               <div>
@@ -66,7 +70,7 @@ export default function Register() {
                     className="text-white"
                   />
                 </div>
-                <TextInput id="nomer" type="text" required />
+                <TextInput id="nomer" type="text" color={"info"} required />
               </div>
 
               <div>
@@ -81,6 +85,7 @@ export default function Register() {
                   id="password1"
                   type="password"
                   rightIcon={IoEyeSharp}
+                  color={"info"}
                   required
                 />
               </div>
@@ -97,11 +102,12 @@ export default function Register() {
                   id="password2"
                   type="password"
                   rightIcon={IoEyeSharp}
+                  color={"info"}
                   required
                 />
               </div>
 
-              <Button type="submit" color="dark" className="mt-6 text-white">
+              <Button type="submit" color="dark" className="mt-6">
                 Masuk Sekarang
               </Button>
             </form>
